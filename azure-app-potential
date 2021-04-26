@@ -1,0 +1,312 @@
+"id":"https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#","$schema":"http://json-schema.org/draft-04/schema#","title":"Template","description":"An Azure deployment template","type":"object","properties":{"$schema":{"type":"string","description":"JSON schema reference"},"metadata":{"type":"object","description":"Additional unstructured metadata to include with the template deployment.","additionalProperties":true},"apiProfile":{"type":"string","enum":["2017-03-09-profile","2018-03-01-hybrid","2018-06-01-profile","2019-03-01-hybrid"],"description":"The apiProfile to use for all resources in the template."},"contentVersion":{"type":"string","pattern":"(^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$)","description":"A 4 number format for the version number of this template file. For example, 1.0.0.0"},"variables":{"type":"object","description":"Variable definitions"},"parameters":{"type":"object","description":"Input parameter definitions","additionalProperties":{"$ref":"#/definitions/parameter"}},"functions":{"type":"array","items":{"$ref":"#/definitions/functionNamespace"},"description":"User defined functions"},"resources":{"type":"array","description":"Collection of resources to be deployed","items":{"oneOf":[{"allOf":[{"$ref":"#/definitions/resourceBase"},{"oneOf":[{"$ref":"https://schema.management.azure.com/schemas/2019-09-16/Microsoft.HealthcareApis.json#/resourceDefinitions/services"},{"$ref":"https://schema.management.azure.com/schemas/2019-02-01-preview/Microsoft.AppConfiguration.json#/resourceDefinitions/configurationStores"},
+[00:00:00] Build started
+[00:00:00] if ($env:FUNCTIONS_NIGHTLY -eq "1") {
+[00:00:00]   $version = Get-Date -Format "yyyyMMdd-HHmm"
+[00:00:00]   Update-AppveyorBuild -Version $version -Message "Functions Scheduled Build"
+[00:00:00] }
+[00:00:00] 
+[00:00:00] git clone -q --branch=main https://github.com/Azure/azure-webjobs-sdk-extensions.git c:\azure-webjobs-sdk-extensions
+[00:00:01] git checkout -qf 9c87af74f90159f8b987c77aa77546f55a62a84e
+[00:00:01] Running Install scripts
+[00:00:01] $env:CommitHash = "$env:APPVEYOR_REPO_COMMIT"
+[00:00:01] .\dotnet-install.ps1 -Version 2.1.300 -Architecture x86
+[00:00:01] 
+[00:00:02] dotnet-install: Downloading link: https://dotnetcli.azureedge.net/dotnet/Sdk/2.1.300/dotnet-sdk-2.1.300-win-x86.zip
+[00:00:03] dotnet-install: Extracting zip from https://dotnetcli.azureedge.net/dotnet/Sdk/2.1.300/dotnet-sdk-2.1.300-win-x86.zip
+[00:00:08] dotnet-install: Adding to current process PATH: "C:\Users\appveyor\AppData\Local\Microsoft\dotnet\". Note: This change will not be visible if PowerShell was run as a child process.
+[00:00:08] dotnet-install: Installation finished
+[00:00:08] $buildNumber = 0
+[00:00:08] $hasTag = Test-Path env:APPVEYOR_REPO_TAG_NAME
+[00:00:08] if (-not $hasTag) {
+[00:00:08]   $buildNumber = $env:APPVEYOR_BUILD_NUMBER
+[00:00:08]   Write-Host "No git tag found. Setting package suffix to '$buildNumber'"
+[00:00:08] }    
+[00:00:08] 
+[00:00:08] if ($hasTag) {
+[00:00:08]   $env:Configuration = "Release"
+[00:00:08] }
+[00:00:08] 
+[00:00:08] .\Build.ps1 -packageSuffix "$buildNumber"
+[00:00:08] 
+[00:00:08] No git tag found. Setting package suffix to '10834'
+[00:00:08] 2.1.300
+[00:00:08] Microsoft (R) Build Engine version 15.7.179.6572 for .NET Core
+[00:00:08] Copyright (C) Microsoft Corporation. All rights reserved.
+[00:00:08] 
+[00:00:45] Helpers\TestJobHost.cs(77,22): warning SA1201: A interface should not follow a class [C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.Tests.Common\WebJobs.Extensions.Tests.Common.csproj]
+[00:00:47] Extensions\Files\FileBindingEndToEndTests.cs(129,13): warning SA1515: Single-line comment should be preceded by blank line [C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.Tests\WebJobs.Extensions.Tests.csproj]
+[00:00:47] Extensions\Files\FileBindingEndToEndTests.cs(131,13): warning SA1512: Single-line comments should not be followed by blank line [C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.Tests\WebJobs.Extensions.Tests.csproj]
+[00:00:47] Extensions\Timers\Listener\TimerListenerTests.cs(402,45): warning SA1201: A property should not follow a method [C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.Tests\WebJobs.Extensions.Tests.csproj]
+[00:00:49] Trigger\CosmosDBTriggerAttributeBindingProviderTests.cs(247,9): warning SA1508: A closing brace should not be preceded by a blank line. [C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.CosmosDB.Tests\WebJobs.Extensions.CosmosDB.Tests.csproj]
+[00:00:50] CSC : warning CS8002: Referenced assembly 'Twilio, Version=5.6.3.0, Culture=neutral, PublicKeyToken=null' does not have a strong name. [C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.Twilio.Tests\WebJobs.Extensions.Twilio.Tests.csproj]
+[00:00:51] 
+[00:00:51] Build succeeded.
+[00:00:51] 
+[00:00:51] Helpers\TestJobHost.cs(77,22): warning SA1201: A interface should not follow a class [C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.Tests.Common\WebJobs.Extensions.Tests.Common.csproj]
+[00:00:51] Extensions\Files\FileBindingEndToEndTests.cs(129,13): warning SA1515: Single-line comment should be preceded by blank line [C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.Tests\WebJobs.Extensions.Tests.csproj]
+[00:00:51] Extensions\Files\FileBindingEndToEndTests.cs(131,13): warning SA1512: Single-line comments should not be followed by blank line [C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.Tests\WebJobs.Extensions.Tests.csproj]
+[00:00:51] Extensions\Timers\Listener\TimerListenerTests.cs(402,45): warning SA1201: A property should not follow a method [C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.Tests\WebJobs.Extensions.Tests.csproj]
+[00:00:51] Trigger\CosmosDBTriggerAttributeBindingProviderTests.cs(247,9): warning SA1508: A closing brace should not be preceded by a blank line. [C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.CosmosDB.Tests\WebJobs.Extensions.CosmosDB.Tests.csproj]
+[00:00:51] CSC : warning CS8002: Referenced assembly 'Twilio, Version=5.6.3.0, Culture=neutral, PublicKeyToken=null' does not have a strong name. [C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.Twilio.Tests\WebJobs.Extensions.Twilio.Tests.csproj]
+[00:00:51]     6 Warning(s)
+[00:00:51]     0 Error(s)
+[00:00:51] 
+[00:00:51] Time Elapsed 00:00:42.75
+[00:00:52] Microsoft (R) Build Engine version 15.7.179.6572 for .NET Core
+[00:00:52] Copyright (C) Microsoft Corporation. All rights reserved.
+[00:00:52] 
+[00:00:52]   Successfully created package 'C:\azure-webjobs-sdk-extensions\buildoutput\Microsoft.Azure.WebJobs.Extensions.4.0.3-10834.nupkg'.
+[00:00:52] C:\Users\appveyor\AppData\Local\Microsoft\dotnet\sdk\2.1.300\Sdks\NuGet.Build.Tasks.Pack\build\NuGet.Build.Tasks.Pack.targets(198,5): error NU5105: The package version '4.0.3-10834' uses SemVer 2.0.0 or components of SemVer 1.0.0 that are not supported on legacy clients. Change the package version to a SemVer 1.0.0 string. If the version contains a release label it must start with a letter. This message can be ignored if the package is not intended for older clients. [C:\azure-webjobs-sdk-extensions\src\WebJobs.Extensions\WebJobs.Extensions.csproj]
+[00:00:53] Microsoft (R) Build Engine version 15.7.179.6572 for .NET Core
+[00:00:53] Copyright (C) Microsoft Corporation. All rights reserved.
+[00:00:53] 
+[00:00:53]   Successfully created package 'C:\azure-webjobs-sdk-extensions\buildoutput\Microsoft.Azure.WebJobs.Extensions.CosmosDB.3.0.9-10834.nupkg'.
+[00:00:53] C:\Users\appveyor\AppData\Local\Microsoft\dotnet\sdk\2.1.300\Sdks\NuGet.Build.Tasks.Pack\build\NuGet.Build.Tasks.Pack.targets(198,5): error NU5105: The package version '3.0.9-10834' uses SemVer 2.0.0 or components of SemVer 1.0.0 that are not supported on legacy clients. Change the package version to a SemVer 1.0.0 string. If the version contains a release label it must start with a letter. This message can be ignored if the package is not intended for older clients. [C:\azure-webjobs-sdk-extensions\src\WebJobs.Extensions.CosmosDB\WebJobs.Extensions.CosmosDB.csproj]
+[00:00:53] Microsoft (R) Build Engine version 15.7.179.6572 for .NET Core
+[00:00:53] Copyright (C) Microsoft Corporation. All rights reserved.
+[00:00:53] 
+[00:00:54]   Successfully created package 'C:\azure-webjobs-sdk-extensions\buildoutput\Microsoft.Azure.WebJobs.Extensions.Http.3.0.12-10834.nupkg'.
+[00:00:54] C:\Users\appveyor\AppData\Local\Microsoft\dotnet\sdk\2.1.300\Sdks\NuGet.Build.Tasks.Pack\build\NuGet.Build.Tasks.Pack.targets(198,5): error NU5105: The package version '3.0.12-10834' uses SemVer 2.0.0 or components of SemVer 1.0.0 that are not supported on legacy clients. Change the package version to a SemVer 1.0.0 string. If the version contains a release label it must start with a letter. This message can be ignored if the package is not intended for older clients. [C:\azure-webjobs-sdk-extensions\src\WebJobs.Extensions.Http\WebJobs.Extensions.Http.csproj]
+[00:00:54] Microsoft (R) Build Engine version 15.7.179.6572 for .NET Core
+[00:00:54] Copyright (C) Microsoft Corporation. All rights reserved.
+[00:00:54] 
+[00:00:55]   Successfully created package 'C:\azure-webjobs-sdk-extensions\buildoutput\Microsoft.Azure.WebJobs.Extensions.Twilio.3.0.1-10834.nupkg'.
+[00:00:55] C:\Users\appveyor\AppData\Local\Microsoft\dotnet\sdk\2.1.300\Sdks\NuGet.Build.Tasks.Pack\build\NuGet.Build.Tasks.Pack.targets(198,5): error NU5105: The package version '3.0.1-10834' uses SemVer 2.0.0 or components of SemVer 1.0.0 that are not supported on legacy clients. Change the package version to a SemVer 1.0.0 string. If the version contains a release label it must start with a letter. This message can be ignored if the package is not intended for older clients. [C:\azure-webjobs-sdk-extensions\src\WebJobs.Extensions.Twilio\WebJobs.Extensions.Twilio.csproj]
+[00:00:55] Microsoft (R) Build Engine version 15.7.179.6572 for .NET Core
+[00:00:55] Copyright (C) Microsoft Corporation. All rights reserved.
+[00:00:55] 
+[00:00:56]   Successfully created package 'C:\azure-webjobs-sdk-extensions\buildoutput\Microsoft.Azure.WebJobs.Extensions.SendGrid.3.0.1-10834.nupkg'.
+[00:00:56] C:\Users\appveyor\AppData\Local\Microsoft\dotnet\sdk\2.1.300\Sdks\NuGet.Build.Tasks.Pack\build\NuGet.Build.Tasks.Pack.targets(198,5): error NU5105: The package version '3.0.1-10834' uses SemVer 2.0.0 or components of SemVer 1.0.0 that are not supported on legacy clients. Change the package version to a SemVer 1.0.0 string. If the version contains a release label it must start with a letter. This message can be ignored if the package is not intended for older clients. [C:\azure-webjobs-sdk-extensions\src\WebJobs.Extensions.SendGrid\WebJobs.Extensions.SendGrid.csproj]
+[00:00:59] 
+[00:00:59] 
+[00:00:59]    Container Uri: https://funkinsstorage.blob.core.windows.net/azure-webjobs-extensions
+[00:00:59] 
+[00:00:59] Name                 BlobType  Length          ContentType                    LastModified         AccessTier SnapshotTime         IsDeleted 
+[00:00:59] ----                 --------  ------          -----------                    ------------         ---------- ------------         --------- 
+[00:00:59] 10834.zip            BlockBlob 179106          application/octet-stream       2021-01-25 23:56:07Z Unknown                         False     
+[00:00:59] 
+[00:00:59] 
+[00:01:00] .\run-tests.ps1
+[00:01:00] Current TimeZone: '(UTC) Coordinated Universal Time'
+[00:01:00] Changing TimeZone for Timer tests. Now '(UTC-08:00) Pacific Time (US & Canada)'
+[00:01:00] Running test: Core extension Tests
+[00:01:00] -----------------------------------------------------------------------------
+[00:01:00] 
+[00:01:01] Build started, please wait...
+[00:01:03] Build completed.
+[00:01:03] 
+[00:01:03] Test run for C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.Tests\bin\Debug\netcoreapp2.1\Microsoft.Azure.WebJobs.Extensions.Tests.dll(.NETCoreApp,Version=v2.1)
+[00:01:03] Microsoft (R) Test Execution Command Line Tool Version 15.7.0
+[00:01:03] Copyright (c) Microsoft Corporation.  All rights reserved.
+[00:01:03] 
+[00:01:03] Starting test execution, please wait...
+[00:02:17] Application started. Press Ctrl+C to shut down.
+[00:02:17] Hosting environment: Production
+[00:02:17] Content root path: C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.Tests\bin\Debug\netcoreapp2.1\
+[00:03:18] dotnet.exe : [xUnit.net 00:02:14.1936804]     Microsoft.Azure.WebJobs.Extensions.Tests.Timers.TimerTriggerEndToEndTests.CustomScheduleJobTest [FAIL]
+[00:03:18] At C:\azure-webjobs-sdk-extensions\run-tests.ps1:20 char:5
+[00:03:18] +     & dotnet $cmdargs | Out-Host
+[00:03:18] +     ~~~~~~~~~~~~~~~~~
+[00:03:18]     + CategoryInfo          : NotSpecified: ([xUnit.net 00:0...eJobTest [FAIL]:String) [], RemoteException
+[00:03:18]     + FullyQualifiedErrorId : NativeCommandError
+[00:03:18]  
+[00:03:19] Application started. Press Ctrl+C to shut down.
+[00:03:19] Hosting environment: Production
+[00:03:19] Content root path: C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.Tests\bin\Debug\netcoreapp2.1\
+[00:03:33] Application started. Press Ctrl+C to shut down.
+[00:03:33] Hosting environment: Production
+[00:03:33] Content root path: C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.Tests\bin\Debug\netcoreapp2.1\
+[00:04:14] 
+[00:04:14] Total tests: 141. Passed: 140. Failed: 1. Skipped: 0.
+[00:04:14] Test Run Failed.
+[00:04:14] 
+[00:04:14] 
+[00:04:14] Test execution time: 3.1917 Minutes
+[00:04:14] 
+[00:04:14] -----------------------------------------------------------------------------
+[00:04:14] 
+[00:04:14] Running test: HTTP extension tests
+[00:04:14] -----------------------------------------------------------------------------
+[00:04:14] 
+[00:04:16] Build started, please wait...
+[00:04:17] Build completed.
+[00:04:17] 
+[00:04:17] Test run for C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.Http.Tests\bin\Debug\netcoreapp2.1\Microsoft.Azure.WebJobs.Extensions.Http.Tests.dll(.NETCoreApp,Version=v2.1)
+[00:04:17] Microsoft (R) Test Execution Command Line Tool Version 15.7.0
+[00:04:17] Copyright (c) Microsoft Corporation.  All rights reserved.
+[00:04:17] 
+[00:04:17] Starting test execution, please wait...
+[00:04:22] Application started. Press Ctrl+C to shut down.
+[00:04:22] Hosting environment: Production
+[00:04:22] Content root path: C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.Http.Tests\bin\Debug\netcoreapp2.1\
+[00:04:22] 
+[00:04:22] Total tests: 50. Passed: 50. Failed: 0. Skipped: 0.
+[00:04:22] Test Run Successful.
+[00:04:22] Test execution time: 5.0431 Seconds
+[00:04:22] 
+[00:04:22] -----------------------------------------------------------------------------
+[00:04:22] 
+[00:04:22] Running test: CosmosDB extension tests
+[00:04:22] -----------------------------------------------------------------------------
+[00:04:22] 
+[00:04:24] Build started, please wait...
+[00:04:26] Build completed.
+[00:04:26] 
+[00:04:26] Test run for C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.CosmosDB.Tests\bin\Debug\netcoreapp2.1\Microsoft.Azure.WebJobs.Extensions.CosmosDB.Tests.dll(.NETCoreApp,Version=v2.1)
+[00:04:26] Microsoft (R) Test Execution Command Line Tool Version 15.7.0
+[00:04:26] Copyright (c) Microsoft Corporation.  All rights reserved.
+[00:04:26] 
+[00:04:26] Starting test execution, please wait...
+[00:04:30] Application started. Press Ctrl+C to shut down.
+[00:04:30] Hosting environment: Production
+[00:04:30] Content root path: C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.CosmosDB.Tests\bin\Debug\netcoreapp2.1\
+[00:04:30] Application started. Press Ctrl+C to shut down.
+[00:04:30] Hosting environment: Production
+[00:04:30] Content root path: C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.CosmosDB.Tests\bin\Debug\netcoreapp2.1\
+[00:04:30] Application started. Press Ctrl+C to shut down.
+[00:04:30] Hosting environment: Production
+[00:04:30] Content root path: C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.CosmosDB.Tests\bin\Debug\netcoreapp2.1\
+[00:04:30] Application started. Press Ctrl+C to shut down.
+[00:04:30] Hosting environment: Production
+[00:04:30] Content root path: C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.CosmosDB.Tests\bin\Debug\netcoreapp2.1\
+[00:04:32] Application started. Press Ctrl+C to shut down.
+[00:04:32] Hosting environment: Production
+[00:04:32] Content root path: C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.CosmosDB.Tests\bin\Debug\netcoreapp2.1\
+[00:04:40] 
+[00:04:40] Total tests: 99. Passed: 99. Failed: 0. Skipped: 0.
+[00:04:40] Test Run Successful.
+[00:04:40] Test execution time: 14.5173 Seconds
+[00:04:40] 
+[00:04:40] -----------------------------------------------------------------------------
+[00:04:40] 
+[00:04:40] Running test: Mobile Apps extension tests
+[00:04:40] -----------------------------------------------------------------------------
+[00:04:40] 
+[00:04:42] Build started, please wait...
+[00:04:43] Build completed.
+[00:04:43] 
+[00:04:43] Test run for C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.MobileApps.Tests\bin\Debug\netcoreapp2.1\Microsoft.Azure.WebJobs.Extensions.MobileApps.Tests.dll(.NETCoreApp,Version=v2.1)
+[00:04:43] Microsoft (R) Test Execution Command Line Tool Version 15.7.0
+[00:04:43] Copyright (c) Microsoft Corporation.  All rights reserved.
+[00:04:43] 
+[00:04:43] Starting test execution, please wait...
+[00:04:47] Application started. Press Ctrl+C to shut down.
+[00:04:47] Hosting environment: Production
+[00:04:47] Content root path: C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.MobileApps.Tests\bin\Debug\netcoreapp2.1\
+[00:04:47] Application started. Press Ctrl+C to shut down.
+[00:04:47] Hosting environment: Production
+[00:04:47] Content root path: C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.MobileApps.Tests\bin\Debug\netcoreapp2.1\
+[00:04:47] Application started. Press Ctrl+C to shut down.
+[00:04:47] Hosting environment: Production
+[00:04:47] Content root path: C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.MobileApps.Tests\bin\Debug\netcoreapp2.1\
+[00:04:47] Application started. Press Ctrl+C to shut down.
+[00:04:47] Hosting environment: Production
+[00:04:47] Content root path: C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.MobileApps.Tests\bin\Debug\netcoreapp2.1\
+[00:04:47] Application started. Press Ctrl+C to shut down.
+[00:04:47] Hosting environment: Production
+[00:04:47] Content root path: C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.MobileApps.Tests\bin\Debug\netcoreapp2.1\
+[00:04:47] Application started. Press Ctrl+C to shut down.
+[00:04:47] Hosting environment: Production
+[00:04:47] Content root path: C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.MobileApps.Tests\bin\Debug\netcoreapp2.1\
+[00:04:47] Application started. Press Ctrl+C to shut down.
+[00:04:47] Hosting environment: Production
+[00:04:47] Content root path: C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.MobileApps.Tests\bin\Debug\netcoreapp2.1\
+[00:04:48] 
+[00:04:48] Total tests: 72. Passed: 72. Failed: 0. Skipped: 0.
+[00:04:48] Test Run Successful.
+[00:04:48] Test execution time: 4.2475 Seconds
+[00:04:48] 
+[00:04:48] -----------------------------------------------------------------------------
+[00:04:48] 
+[00:04:48] Running test: SendGrid extension tests
+[00:04:48] -----------------------------------------------------------------------------
+[00:04:48] 
+[00:04:49] Build started, please wait...
+[00:04:51] Build completed.
+[00:04:51] 
+[00:04:51] Test run for C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.SendGrid.Tests\bin\Debug\netcoreapp2.1\Microsoft.Azure.WebJobs.Extensions.SendGrid.Tests.dll(.NETCoreApp,Version=v2.1)
+[00:04:51] Microsoft (R) Test Execution Command Line Tool Version 15.7.0
+[00:04:51] Copyright (c) Microsoft Corporation.  All rights reserved.
+[00:04:51] 
+[00:04:51] Starting test execution, please wait...
+[00:04:54] 
+[00:04:54] Total tests: 10. Passed: 10. Failed: 0. Skipped: 0.
+[00:04:54] Test Run Successful.
+[00:04:54] Test execution time: 3.2391 Seconds
+[00:04:54] 
+[00:04:54] -----------------------------------------------------------------------------
+[00:04:54] 
+[00:04:54] Running test: Twilio extension tests
+[00:04:54] -----------------------------------------------------------------------------
+[00:04:54] 
+[00:04:56] Build started, please wait...
+[00:04:57] Build completed.
+[00:04:57] 
+[00:04:57] Test run for C:\azure-webjobs-sdk-extensions\test\WebJobs.Extensions.Twilio.Tests\bin\Debug\netcoreapp2.1\Microsoft.Azure.WebJobs.Extensions.Twilio.Tests.dll(.NETCoreApp,Version=v2.1)
+[00:04:57] Microsoft (R) Test Execution Command Line Tool Version 15.7.0
+[00:04:57] Copyright (c) Microsoft Corporation.  All rights reserved.
+[00:04:57] 
+[00:04:57] Starting test execution, please wait...
+[00:05:00] 
+[00:05:00] Total tests: 2. Passed: 2. Failed: 0. Skipped: 0.
+[00:05:00] Test Run Successful.
+[00:05:00] Test execution time: 2.8553 Seconds
+[00:05:00] 
+[00:05:00] -----------------------------------------------------------------------------
+[00:05:00] 
+[00:05:00] Changing TimeZone back to original. Now '(UTC) Coordinated Universal Time'
+[00:05:00] Command executed with exception: 
+[00:05:00] 
+[00:05:00] .\tools\PollSigningResults.ps1
+[00:05:01]  elapsed, polling...
+[00:05:06]  elapsed, polling...
+[00:05:11]  elapsed, polling...
+[00:05:16]  elapsed, polling...
+[00:05:21]  elapsed, polling...
+[00:05:26]  elapsed, polling...
+[00:05:32]  elapsed, polling...
+[00:05:37]  elapsed, polling...
+[00:05:42]  elapsed, polling...
+[00:05:47]  elapsed, polling...
+[00:05:52]  elapsed, polling...
+[00:05:57] Jenkins artifacts found
+[00:06:02] 
+[00:06:02] 
+[00:06:02]     Directory: C:\azure-webjobs-sdk-extensions
+[00:06:02] 
+[00:06:02] 
+[00:06:02] Mode                LastWriteTime         Length Name                                                                                                                                                                                
+[00:06:02] ----                -------------         ------ ----                                                                                                                                                                                
+[00:06:02] d-----        1/26/2021  12:01 AM                buildoutput                                                                                                                                                                         
+[00:06:03] 
+[00:06:03] ICloudBlob                         : Microsoft.WindowsAzure.Storage.Blob.CloudBlockBlob
+[00:06:03] BlobType                           : BlockBlob
+[00:06:03] Length                             : 236559
+[00:06:03] IsDeleted                          : False
+[00:06:03] RemainingDaysBeforePermanentDelete : 
+[00:06:03] ContentType                        : application/octet-stream
+[00:06:03] LastModified                       : 1/26/2021 12:01:05 AM +00:00
+[00:06:03] SnapshotTime                       : 
+[00:06:03] ContinuationToken                  : 
+[00:06:03] Context                            : Microsoft.WindowsAzure.Commands.Storage.AzureStorageContext
+[00:06:03] Name                               : 10834.zip
+[00:06:03] 
+[00:06:04] 
+[00:06:04] Uploading artifact CodeSignSummary-6749bdd1-51d2-4933-866d-92cfe7d76b89.md (895 bytes)...100%
+[00:06:04] 
+[00:06:04] Uploading artifact CodeSignSummary-8585d023-4194-4f45-b8e7-4a25211be248.md (895 bytes)...100%
+[00:06:05] 
+[00:06:05] Uploading artifact CodeSignSummary-8a486c9e-8ed5-4349-ab76-0cdecb4d11cb.md (895 bytes)...100%
+[00:06:05] 
+[00:06:05] Uploading artifact Microsoft.Azure.WebJobs.Extensions.4.0.3-10834.nupkg (72,132 bytes)...91%
+[00:06:05] Uploading artifact Microsoft.Azure.WebJobs.Extensions.4.0.3-10834.nupkg (72,132 bytes)...100%
+[00:06:06] 
+[00:06:06] Uploading artifact Microsoft.Azure.WebJobs.Extensions.CosmosDB.3.0.9-10834.nupkg (65,331 bytes)...100%
+[00:06:06] 
+[00:06:06] Uploading artifact Microsoft.Azure.WebJobs.Extensions.Http.3.0.12-10834.nupkg (58,589 bytes)...100%
+[00:06:06] 
+[00:06:06] Uploading artifact Microsoft.Azure.WebJobs.Extensions.SendGrid.3.0.1-10834.nupkg (32,195 bytes)...100%
+[00:06:07] 
+[00:06:07] Uploading artifact Microsoft.Azure.WebJobs.Extensions.Twilio.3.0.1-10834.nupkg (30,742 bytes)...100%
+[00:06:07] 
+[00:06:07] 
